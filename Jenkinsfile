@@ -16,8 +16,14 @@ pipeline {
                 }
             }
         }
-         
-        
+         stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-pwd', passwordVariable: 'PASS', usernameVariable: 'USER')]) { 
+                    sh 'echo $PASS | docker login -u $USER --password-stdin'
+					sh 'docker push nandansaha0807/staragileprojectfinance:v1' 
+                }
+            }
+        }
      stage('Deploy') {
             steps {
                 sh 'sudo docker run -itd --name My-first-containe21211 -p 8083:8081 nandansaha0807/staragileprojectfinance:v1'
