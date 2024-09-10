@@ -26,9 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Remove any existing container with the same name
                     sh 'docker rm -f My-first-containe2211 || true'
-                    // Run the new container
                     sh 'docker run -d --name My-first-containe2211 -p 8083:8081 nandansaha0807/staragileprojectfinance:v1'
                 }
             }
