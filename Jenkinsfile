@@ -26,8 +26,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'docker rm -f My-first-containe2211 || true'
-                    sh 'docker run -d --name My-first-containe2211 -p 8083:8081 nandansaha0807/staragileprojectfinance:v1'
+                    // Remove any existing container with the same name
+                    sh 'docker rm -f Finance_Project_01 || true'
+                    // Run the new container
+                    sh 'docker run -d --name Finance_Project_01 -p 8083:8081 nandansaha0807/staragileprojectfinance:v1'
                 }
             }
         }
