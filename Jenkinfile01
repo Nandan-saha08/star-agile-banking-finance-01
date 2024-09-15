@@ -10,20 +10,12 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/rohinicbabu/star-agile-banking-finance.git'
+                git 'https://github.com/Nandan-saha08/star-agile-banking-finance-01.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
             }        
         }
-       stage('Generate Test Reports') {
-           steps {
-               publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Care-Health/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-                    }
-            }
-       stage('Create Docker Image') {
-           steps {
-               sh 'docker build -t cbabu85/banking-project-demo:1.0 .'
-                    }
-                }
+     }
+}
